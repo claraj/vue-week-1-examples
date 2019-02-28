@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Hello Vue</h1>
+        <p>
+            {{ message | uppercase }}
+        </p>
+
+        <button v-on:click="addExclamation">Add !</button>
+    </div>
+
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                message: "hi!",
+            },
+            methods: {
+                addExclamation: function(event) {
+                    this.message += '!'
+                }
+            },
+            filters: {
+                uppercase: function(string) {
+                    return string.toUpperCase()
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
+

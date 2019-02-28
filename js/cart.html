@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Cart</title>
+<style>
+    td, th {
+        width: 25%;
+        text-align: center
+    }
+</style>
+
+</head>
+<body>
+
+    <h1>Example Shopping Cart</h1>
+
+    <div>
+        <table>
+        <tr><th>Item</th><th>Unit Price</th><th>Quantity</th><th>Total</th></tr>
+        <tr>
+            <td>Pair of Socks</td> 
+            <td id="unit-price">4.99</td>
+            <td><input type="number" id="quantity"></td>
+            <td id="total"></td>
+        </tr>
+        </table>
+    </div>
+
+<script>
+
+let totalEl = document.querySelector('#total')
+let unitPriceEl = document.querySelector('#unit-price')
+let quantityInput = document.querySelector('#quantity')
+
+function updateTotal() {
+    let total = quantityInput.value * unitPriceEl.innerHTML
+    totalEl.innerHTML = total.toFixed(2)   // display 2 decimal places
+}
+
+updateTotal()
+
+quantityInput.addEventListener('input', function() {
+    updateTotal()
+})
+
+
+</script>
+
+</body>
+
+</html>
