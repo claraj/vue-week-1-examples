@@ -16,18 +16,17 @@
 </head>
 <body>
 
-    <h1>Example Shopping Cart</h1>
-
     <div id="app">
+        <h1>Example Shopping Cart</h1>
 
         <table>
-        <tr><th>Item</th><th>Unit Price</th><th>Quantity</th><th>Total</th></tr>
-        <tr>
-            <td>{{ name }}</td> 
-            <td>${{ unitPrice }}</td>
-            <td><input type="number" id="quantity" v-model="quantity"></td>
-            <td id="total"> ${{ total | decimalPlaces(2) }} </td>
-        </tr>
+            <tr><th>Item</th><th>Unit Price</th><th>Quantity</th><th>Total</th></tr>
+            <tr>
+                <td>{{ name }}</td> 
+                <td>${{ unitPrice }}</td>
+                <td><input type="number" id="quantity" v-model="quantity"></td>
+                <td id="total"> ${{ total | decimalPlaces(2) }} </td>
+            </tr>
         </table>
     </div>
 
@@ -37,9 +36,10 @@ let app = new Vue({
      el: '#app',
     data: {
         name: 'Hat',
-        quantity: 0,
+        quantity: 1,
         unitPrice: 4.99
-    }, computed: {
+    }, 
+    computed: {
         total: function() {
             return this.quantity * this.unitPrice
         }

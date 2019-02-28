@@ -12,41 +12,44 @@
 
 </head>
 <body>
-
-    <h1>Example Shopping Cart</h1>
-
     <div>
+        <h1>Example Shopping Cart</h1>
         <table>
-        <tr><th>Item</th><th>Unit Price</th><th>Quantity</th><th>Total</th></tr>
-        <tr>
-            <td>Pair of Socks</td> 
-            <td id="unit-price">4.99</td>
-            <td><input type="number" id="quantity"></td>
-            <td id="total"></td>
-        </tr>
+            <tr><th>Item</th><th>Unit Price</th><th>Quantity</th><th>Total</th></tr>
+            <tr>
+                <td id="name"></td> 
+                <td id="unit-price"></td>
+                <td><input type="number" id="quantity"></td>
+                <td id="total"></td>
+            </tr>
         </table>
     </div>
 
 <script>
 
-let totalEl = document.querySelector('#total')
-let unitPriceEl = document.querySelector('#unit-price')
-let quantityInput = document.querySelector('#quantity')
+    let data = { name: 'Hat', unitPrice: 4.99, quantity: 1}
 
-function updateTotal() {
-    let total = quantityInput.value * unitPriceEl.innerHTML
-    totalEl.innerHTML = total.toFixed(2)   // display 2 decimal places
-}
+    let nameEl = document.querySelector('#name')
+    let unitPriceEl = document.querySelector('#unit-price')
+    let quantityInput = document.querySelector('#quantity')
+    let totalEl = document.querySelector('#total')
+    
+    nameEl.innerHTML = data.name 
+    unitPriceEl.innerHTML = data.unitPrice
+    quantityInput.value = data.quantity
 
-updateTotal()
+    function updateTotal() {
+        let total = quantityInput.value * unitPriceEl.innerHTML
+        totalEl.innerHTML = total.toFixed(2)   // display 2 decimal places
+    }
 
-quantityInput.addEventListener('input', function() {
+    quantityInput.addEventListener('input', function() {
+        updateTotal()
+    })
+
     updateTotal()
-})
-
 
 </script>
 
 </body>
-
 </html>
