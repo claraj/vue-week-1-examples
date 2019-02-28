@@ -6,3 +6,5 @@
 * v-if for conditional rendering
 * filters
 * computed properties 
+
+Live versions here [https://claraj.github.io/vue-week-1-examples](https://claraj.github.io/vue-week-1-examples)
