@@ -10,9 +10,13 @@
         <h1>Hello Vue</h1>
         <label for="name">Please enter your name: </label>
         <input v-model="name" id="name">
-        <p v-if="name">
-            Your name is {{ name }}
-        </p>
+        <div v-if="name.length > 0">
+            <p>Your name is {{ name }}</p>
+            <button v-on:click="clear">Clear Input</button>
+        </div>
+        <div v-else>
+            <p>Awaiting user input.</p> 
+        </div>
     </div>
 
     <script>
@@ -21,6 +25,11 @@
             data: {
                name: ""
             },
+            methods: {
+                clear: function() {
+                    this.name = ''
+                }
+            }
         })
     </script>
 

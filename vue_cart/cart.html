@@ -20,12 +20,18 @@
         <h1>Example Shopping Cart</h1>
 
         <table>
-            <tr><th>Item</th><th>Unit Price</th><th>Quantity</th><th>Total</th></tr>
+            <tr>
+                <th>Item</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Total</th></tr>
             <tr>
                 <td>{{ name }}</td> 
                 <td>${{ unitPrice }}</td>
-                <td><input type="number" id="quantity" v-model="quantity"></td>
-                <td id="total"> ${{ total | decimalPlaces(2) }} </td>
+                <td>
+                    <input type="number" id="quantity" v-model="quantity">
+                </td>
+                <td> ${{ total | decimalPlaces(2) }} </td>
             </tr>
         </table>
     </div>
@@ -41,12 +47,14 @@ let app = new Vue({
     }, 
     computed: {
         total: function() {
-            return this.quantity * this.unitPrice
+            let totalPrice = this.quantity * this.unitPrice
+            return totalPrice
         }
     },
     filters: {
-        decimalPlaces: function(price, decimalPlaces) {
-            return price.toFixed(decimalPlaces)
+        decimalPlaces: function(price, numberOfDecimalPlaces) {
+            let formattedPrice = price.toFixed(numberOfDecimalPlaces)
+            return formattedPrice
         }
     }
  })
