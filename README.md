@@ -3,7 +3,7 @@
 * Hello Vue
 * v-text vs {{ }}
 * v-model with input elements
-* v-if for conditional rendering
+* v-if and v-else for conditional rendering
 * filters
 * computed properties 
 
