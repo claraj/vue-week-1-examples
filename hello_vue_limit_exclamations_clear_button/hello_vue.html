@@ -24,7 +24,7 @@ let app = new Vue({
         numberOfExclamationPoints: 1
     },
     methods: {
-        addExclamation: function() {
+        addExclamation() {
             if (this.numberOfExclamationPoints < 10) {
                 this.message = this.message + '!'
                 this.numberOfExclamationPoints++
@@ -32,14 +32,14 @@ let app = new Vue({
                 alert('No more exclamation points!!!')
             }
         },
-        clear: function() {
+        clear() {
             // reset the message. 
             this.message = 'Welcome Web Students!'
             this.numberOfExclamationPoints = 1
         }
     },
     filters: {
-        uppercase: function(string) {
+        uppercase(string) {
             return string.toUpperCase()
         }
     }

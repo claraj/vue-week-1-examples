@@ -22,12 +22,12 @@
                 message: "hi!",
             },
             methods: {
-                addExclamation: function(event) {
+                addExclamation() {
                     this.message += '!'
                 }
             },
             filters: {
-                uppercase: function(string) {
+                uppercase(string) {
                     return string.toUpperCase()
                 }
             }
