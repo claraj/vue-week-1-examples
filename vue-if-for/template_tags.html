@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Vue Template Tags</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+
+<body>
+    <div id="app">
+        <h1>Data and Template Examples</h1>
+
+        <h2>Using data in templates with mustache syntax</h2>
+
+        <p>This text is from a data variable: {{ message }}</p>
+        <p>This number is from a data variable: {{ number }}</p>
+
+        <p>The number of flowers with images on this page is {{ flowersInMN.length }} </p>
+
+        <!-- conditional rendering -->
+        <p v-if="number > 100">
+            The number is greater than 100
+        </p>
+
+        <h2>Looping over arrays</h2>
+
+        <ul>
+            <li v-for="flower in flowers">
+                {{ flower }}
+            </li>
+        </ul>
+
+        <h2>Showing data from an object</h2>
+
+        <p>The name of the flower is {{ flowerInfo.name }}. It is often the color {{ flowerInfo.color }}.</p>
+        <p>Some uses of {{ flowerInfo.name }} are {{ flowerInfo.uses }}.</p>
+
+        <p v-if="flowerInfo.name == 'Rose'">
+            The flower info object's name is Rose. 
+        </p>
+        <p v-else>
+            The flower info object's name is not Rose.   Using a v-else is not required if you don't need it. 
+        </p>
+
+
+        <h2>Looping over a list of objects</h2>
+        
+        <table>
+            <tr><th>Flower</th><th>Minnesota native plant?</th></tr>
+            <tr v-for="flower in flowersInMN">
+                <td>{{ flower.name }}</td>
+                <td>{{ flower.livesInMN }}</td>
+            </tr>
+        </table>
+        
+        <h2>Looping over a list of objects - plus v-if and v-bind</h2>
+
+        <table>
+            <tr>
+                <th>Flower</th>
+                <th>Minnesota native plant?</th>
+                <th>Image</th>
+            </tr>
+            <tr v-for="flower in flowersInMNImages">
+                <td>{{ flower.name }}</td>
+                <td>
+                    <span v-if="flower.livesInMN">
+                        Yes!
+                    </span>
+                    <span v-else>
+                        No
+                    </span>
+                </td>
+                <td>
+                    <img v-bind:src="flower.image">    <!-- use v-bind to set any HTML attributes -->
+                </td>
+
+            </tr>
+        </table>
+
+
+    </div>
+
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                message: 'flower page',
+                number: 20,
+
+                // An array 
+                flowers: ['Rose', 'Daisy', 'Bluebell'],
+
+                // An object
+                flowerInfo: {
+                    name: 'Rose',
+                    color: 'Pink',
+                    uses: 'Ornamental, culinary'
+                },
+                
+                // An array of objects 
+                flowersInMN: [
+                    { name: 'Rose', livesInMN: true },
+                    { name: 'California Poppy', livesInMN: false },
+                    { name: 'Coneflower', livesInMN: true },
+                    { name: 'Plumeria', livesInMN: false },
+                ],
+
+                // Another array of objects 
+                flowersInMNImages: [
+                    { name: 'Wild Rose', livesInMN: true, image: 'img/rose.png' },
+                    { name: 'California Poppy', livesInMN: false, image: 'img/ca_poppy.png' },
+                    { name: 'Coneflower', livesInMN: true, image: 'img/coneflower.png' },
+                    { name: 'Plumeria', livesInMN: false, image: 'img/plumeria.png' },
+                ]
+
+
+            },
+            methods: {
+                addExclamation() {
+                    this.message += '!'
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
+
+
