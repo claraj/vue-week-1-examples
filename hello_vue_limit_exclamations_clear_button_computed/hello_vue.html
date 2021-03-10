@@ -4,7 +4,7 @@
 
     <h1>Hello Vue</h1>
 
-    <p>{{ message }}</p>
+    <p>{{ messageWithExclamationPoints }}</p>
 
     <button v-on:click="addExclamation">Add !</button>
 
@@ -18,24 +18,32 @@
         el: '#app',
         data() {
             return {
-                message: 'hi',
+                message: 'hi!',
                 numberOfExclamationPoints: 0
             }
         },
         methods: {
             addExclamation() {
                 if (this.numberOfExclamationPoints < 10) {
-                    this.message = this.message + '!'
                     this.numberOfExclamationPoints++
                 } else {
                     alert('No more exclamation points!!!')
                 }
             },
             clear() {
-                this.message = 'hi'
-                this.numberOfExclamationPoints = 1
+                this.numberOfExclamationPoints = 0
             }
         },
+        computed: {
+            messageWithExclamationPoints() {
+                // create message from the original message plus the number of exclamation points needed
+                let messageWithPoints = this.message 
+                for (let x = 0; x < this.numberOfExclamationPoints; x++) {
+                    messageWithPoints = messageWithPoints + '!'
+                }
+                return messageWithPoints
+            }
+        }
     })
 
     app.mount('#app')

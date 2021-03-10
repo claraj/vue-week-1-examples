@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Hello Vue</title>
-        <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/vue@next"></script>
 </head>
 
 <body>
@@ -10,9 +10,14 @@
         <h1>Hello Vue</h1>
         <label for="name">Please enter your name: </label>
         <input v-model="name" id="name">
-        <p>
-            Your name is {{ name }}
-        </p>      
+
+        <div v-if="name">
+            <p>Your name is {{ name }}</p>
+            <button v-on:click="clear">Clear Input</button>
+        </div>
+        <div v-else>
+            <p>Awaiting user input.</p> 
+        </div>
     </div>
 
     <script>
@@ -22,6 +27,11 @@
                     name: ''
                 }
             },
+            methods: {
+                clear() {
+                    this.name = ''
+                }
+            }
         })
 
         app.mount('#app')
@@ -30,5 +40,4 @@
 
 </body>
 </html>
-
 

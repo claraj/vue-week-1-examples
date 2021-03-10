@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Hello Vue</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
 </head>
 
 <body>
@@ -10,29 +10,27 @@
         <h1>Hello Vue</h1>
         <label for="name">Please enter your name: </label>
         <input v-model="name" id="name">
-        <div v-if="name.length > 0">
+
+        <div v-if="name">
             <p>Your name is {{ name }}</p>
-            <button v-on:click="clear">Clear Input</button>
         </div>
-        <div v-else>
-            <p>Awaiting user input.</p> 
-        </div>
+      
     </div>
 
     <script>
-        let app = new Vue({
-            el: '#app',
-            data: {
-               name: ""
-            },
-            methods: {
-                clear: function() {
-                    this.name = ''
+        let app = Vue.createApp({
+            data() {
+                return {
+                    name: ''
                 }
             }
         })
+
+        app.mount('#app')
+
     </script>
 
 </body>
 </html>
+
 

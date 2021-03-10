@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Hello Vue Template Tags</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 
@@ -35,7 +35,7 @@
         <p>The name of the flower is {{ flowerInfo.name }}. It is often the color {{ flowerInfo.color }}.</p>
         <p>Some uses of {{ flowerInfo.name }} are {{ flowerInfo.uses }}.</p>
 
-        <p v-if="flowerInfo.name == 'Rose'">
+        <p v-if="flowerInfo.name === 'Rose'">
             The flower info object's name is Rose. 
         </p>
         <p v-else>
@@ -82,44 +82,46 @@
     </div>
 
     <script>
-        let app = new Vue({
-            el: '#app',
-            data: {
-                message: 'flower page',
-                number: 20,
+        let app = Vue.createApp({
+            data() {
+                return {
+                    // Exmample data
+                    message: 'Flower Page',
+                    number: 20,
 
-                // An array 
-                flowers: ['Rose', 'Daisy', 'Bluebell'],
+                    // An array 
+                    flowers: ['Rose', 'Daisy', 'Bluebell'],
 
-                // An object
-                flowerInfo: {
-                    name: 'Rose',
-                    color: 'Pink',
-                    uses: 'Ornamental, culinary'
-                },
-                
-                // An array of objects 
-                flowersInMN: [
-                    { name: 'Rose', livesInMN: true },
-                    { name: 'California Poppy', livesInMN: false },
-                    { name: 'Coneflower', livesInMN: true },
-                    { name: 'Plumeria', livesInMN: false },
-                ],
+                    // An object
+                    flowerInfo: {
+                        name: 'Rose',
+                        color: 'Pink',
+                        uses: 'Ornamental, culinary'
+                    },
+                    
+                    // An array of objects 
+                    flowersInMN: [
+                        { name: 'Rose', livesInMN: true },
+                        { name: 'California Poppy', livesInMN: false },
+                        { name: 'Coneflower', livesInMN: true },
+                        { name: 'Plumeria', livesInMN: false },
+                    ],
 
-                // Another array of objects 
-                flowersInMNImages: [
-                    { name: 'Wild Rose', livesInMN: true, image: 'img/rose.png' },
-                    { name: 'California Poppy', livesInMN: false, image: 'img/ca_poppy.png' },
-                    { name: 'Coneflower', livesInMN: true, image: 'img/coneflower.png' },
-                    { name: 'Plumeria', livesInMN: false, image: 'img/plumeria.png' },
-                ]
-
-
+                    // Another array of objects 
+                    flowersInMNImages: [
+                        { name: 'Wild Rose', livesInMN: true, image: 'img/rose.png' },
+                        { name: 'California Poppy', livesInMN: false, image: 'img/ca_poppy.png' },
+                        { name: 'Coneflower', livesInMN: true, image: 'img/coneflower.png' },
+                        { name: 'Plumeria', livesInMN: false, image: 'img/plumeria.png' },
+                    ]
+                }
             },
             methods: {
                 // add here if needed
             }
         })
+
+        app.mount('#app')
     </script>
 
 </body>

@@ -2,24 +2,29 @@
 <html>
 <head>
     <title>Hello Vue</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
 </head>
 
 <body>
     <div id="app">
         <h1>Hello Vue</h1>
         <p>
-            {{message}}
+            {{ message }}
         </p>
     </div>
 
     <script>
-        let app = new Vue({
-            el: '#app',
-            data: {
-                message: 'hi!',
+
+        let app = Vue.createApp({
+            data() {
+                return {
+                    message: 'hi',
+                }
             }
         })
+
+        app.mount('#app')
+
     </script>
 
 </body>

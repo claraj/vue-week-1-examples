@@ -1,4 +1,4 @@
-<script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/vue@next"></script>
 
 <div id="app">
 
@@ -7,8 +7,6 @@
     <p>{{ message }}</p>
 
     <button v-on:click="addExclamation">Add !</button>
-
-    <button v-on:click="clear">Clear Exclamation Points</button>
 
 </div>
 
@@ -30,10 +28,6 @@
                 } else {
                     alert('No more exclamation points!!!')
                 }
-            },
-            clear() {
-                this.message = 'hi'
-                this.numberOfExclamationPoints = 1
             }
         },
     })
