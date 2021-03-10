@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Cart</title>
+
+    <script src="https://unpkg.com/vue@next"></script>
+   
+    <style>
+        td, th {
+            width: 25%;
+            text-align: center
+        }
+
+        .error-message {
+            color: red;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="app">
+        <h1>Example Shopping Cart</h1>
+
+        <table>
+
+            <tr>
+                <th>Item</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Total</th></tr>
+            <tr>
+                <td>{{ name }}</td> 
+                <td>${{ unitPrice }}</td>
+                <td>
+                    <!-- The number modifier will convert the text entered to a number, if a conversion is possible -->
+                    <input type="number" id="quantity" v-model.number="quantity">
+                    <div class="error-message" v-if="quantityError">{{ quantityError }}</div>
+                </td>
+                <td> 
+                    <div v-if="quantityError">
+                        Invalid quantity
+                    </div>
+                    <div v-else>
+                        ${{ total }} 
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+<script>
+
+    let app = Vue.createApp({
+        data() {
+            return {
+                name: 'Hat',
+                quantity: 1,
+                unitPrice: 4.99,
+                maxQuantity: 20,
+                quantityError: ''
+            }
+        },
+        computed: {
+            total() {
+                let totalPrice = this.quantity * this.unitPrice
+                let formattedPrice = totalPrice.toFixed(2)
+                return formattedPrice
+            }
+        },
+        watch: {
+            quantity(newQuantity, oldQuantity) {
+
+                // set an error message if the new value of quantity is not valid 
+
+                if (!Number.isInteger(newQuantity)) { 
+                    this.quantityError = 'Quantity must be a number'
+                }
+                
+                else if (newQuantity < 0 || newQuantity > this.maxQuantity) {
+                    this.quantityError = 'Quantity must be between 0 and 20' 
+                }
+
+                 // Clear error if quantity is valid                     
+                 
+                else {
+                    this.quantityError = ''            
+                }
+            }
+        }
+    })
+
+    app.mount('#app')
+
+</script>
+
+</body>
+
+</html>
+
