@@ -38,7 +38,6 @@
                     <div class="error-message" v-if="quantityError">{{ quantityError }}</div>
                 </td>
                 <td> 
-                    <!-- Only display total if there is no error -->
                     <div v-if="quantityError">
                         Invalid quantity
                     </div>
@@ -65,23 +64,28 @@
         },
         computed: {
             total() {
+                let totalPrice = this.quantity * this.unitPrice
+                let formattedPrice = totalPrice.toFixed(2)
+                return formattedPrice
+            }
+        },
+        watch: {
+            quantity(newQuantity, oldQuantity) {
+
                 // set an error message if the new value of quantity is not valid 
-                if (!Number.isInteger(this.quantity)) { 
+
+                if (!Number.isInteger(newQuantity)) { 
                     this.quantityError = 'Quantity must be a number'
                 }
                 
-                else if (this.quantity < 0 || this.quantity > this.maxQuantity) {
+                else if (newQuantity < 0 || newQuantity > this.maxQuantity) {
                     this.quantityError = 'Quantity must be between 0 and 20' 
                 }
 
                  // Clear error if quantity is valid                     
+                 
                 else {
-                    this.quantityError = ''   
-                    
-                    // Compute price 
-                    let totalPrice = this.quantity * this.unitPrice
-                    let formattedPrice = totalPrice.toFixed(2)
-                    return formattedPrice
+                    this.quantityError = ''            
                 }
             }
         }
