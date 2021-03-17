@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Vue Loops</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="app"> 
+        <h1>Task List</h1>
+        <ul>
+            <!-- This v-for will be duplicated, once for each task in the taskList array -->
+            <li v-for="task in taskList">{{ task }}</li>
+        </ul>      
+    </div>
+
+    <script>
+
+        let app = Vue.createApp({
+            data() {
+                return {
+                    taskList: ['Water plants', 'Feed cat', 'Do taxes']   
+                }
+            }
+        })
+
+        app.mount('#app')
+
+    </script>
+
+</body>
+</html>
+
+
