@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vue Random Dog Picture</title>
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <style>
+
+        .dog-image {
+            max-height: 600px;
+            max-width: 600px;
+        }
+
+        .error {
+            color: red;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        
+        <h1>Dog API</h1>
+
+        <div class="error" v-if="error">{{ error }}</div>
+
+        <div v-if="image">
+            <p>Here is a random corgi dog picture</p>
+            <img class="dog-image" v-bind:src="image">
+            <br>
+            <button v-on:click="newDogImage" v-bind:disabled="requestInProgress">Another!</button>
+        </div>  
+
+        <p>Images from the <a href="https://dog.ceo/dog-api/">Dog API</a></p>
+
+    </div>
+
+    <script>
+
+        let app = Vue.createApp({
+            data() {
+                return {
+                    image: '',
+                    error: '',
+                    requestInProgress: false
+                }
+            },
+            mounted() {
+                this.newDogImage()
+            },
+            methods: {
+                newDogImage() {
+
+                    this.requestInProgress = true   // prevent any more requests while this one is in progress 
+
+                    fetch('https://dog.ceo/api/breed/corgi/images/random')
+                        .then( response => response.json() )
+                        .then( dogImageJSON => {
+                            /* An example response looks like this, message property has the image URL 
+                            {
+                                "message": "https://images.dog.ceo/breeds/corgi-cardigan/n02113186_6539.jpg",
+                                "status": "success"
+                                }
+                            */
+                            this.image = dogImageJSON.message
+
+                        })
+                        .catch( err => {
+                            console.log('Error fetching dog picure because', err)
+                            this.error = 'Sorry! Could not fetch dog picture '
+                        })
+                        .finally( () => {
+                            // allow another request to be made. This code will always run
+                            // if everything worked or if there was an error 
+                            this.requestInProgress = false
+                        })
+                }
+            }
+        })
+
+        app.mount('#app')
+    </script>
+
+</body>
+</html>
+
+
